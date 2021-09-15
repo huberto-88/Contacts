@@ -5,9 +5,9 @@ import java.time.LocalDate;
 public class Person extends Contact {
     private String surname;
     private String gender;
-    private LocalDate birthDay;
+    private String birthDay;
 
-    private Person(String name, String surname, String gender, LocalDate birthDay, String phoneNumber) {
+    private Person(String name, String surname, String gender, String birthDay, String phoneNumber) {
         super(name, phoneNumber);
         this.name = name;
         this.surname = surname;
@@ -23,11 +23,11 @@ public class Person extends Contact {
         this.gender = gender;
     }
 
-    public LocalDate getBirthDay() {
+    public String getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(LocalDate birthDay) {
+    public void setBirthDay(String birthDay) {
         this.birthDay = birthDay;
     }
 
@@ -39,13 +39,22 @@ public class Person extends Contact {
         return surname;
     }
 
-
+    @Override
+    public String toString() {
+        return "Name: " + name + "\n" +
+                "Surname: " + surname + "\n" +
+                "Birth date: " + birthDay + "\n" +
+                "Gender: " + gender + "\n" +
+                "Number: " + phoneNumber + "\n" +
+                "Time created: " + timeCreated + "\n" +
+                "Time last edit: " + timeLastEdit + "\n";
+    }
 
     static class ContactCreator {
         private String name;
         private String surname;
         private String gender;
-        private LocalDate birthDay;
+        private String birthDay;
         private String phoneNumber;
 
         ContactCreator setName(String name) {
@@ -63,7 +72,7 @@ public class Person extends Contact {
             return this;
         }
 
-        ContactCreator setBirthDay(LocalDate birthDay) {
+        ContactCreator setBirthDay(String birthDay) {
             this.birthDay = birthDay;
             return this;
         }

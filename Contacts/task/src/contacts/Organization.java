@@ -3,7 +3,7 @@ package contacts;
 public class Organization extends Contact {
     private String address;
 
-    public Organization(String name, String address, String phoneNumber) {
+    private Organization(String name, String address, String phoneNumber) {
         super(name, phoneNumber);
         this.address = address;
     }
@@ -16,17 +16,19 @@ public class Organization extends Contact {
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "Organization name: " + name + "\n" +
+                "Address: " + address + "\n" +
+                "Number: " + phoneNumber + "\n" +
+                "Time created: " + timeCreated + "\n" +
+                "Time last edit: " + timeLastEdit + "\n";
+    }
 
     static class ContactCreator {
         private String name;
         private String address;
         private String phoneNumber;
-
-        public ContactCreator(String name, String address, String phoneNumber) {
-            this.name = name;
-            this.address = address;
-            this.phoneNumber = phoneNumber;
-        }
 
         ContactCreator setName(String name) {
             this.name = name;
