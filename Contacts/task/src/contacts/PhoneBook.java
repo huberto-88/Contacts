@@ -6,15 +6,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PhoneBook {
-    private final List<Contact> contactList = new ArrayList<>();
+    private final List<Person> personList = new ArrayList<>();
 
     public void addNewContact(String name, String surname, String phoneNumber) {
         if (!isPhoneNumberValid(phoneNumber)) {
             System.out.println("Wrong number format!");
             phoneNumber = "[no number]";
         }
-        contactList.add(
-                new Contact.ContactCreator()
+        personList.add(
+                new Person.ContactCreator()
                         .setName(name)
                         .setSurname(surname)
                         .setPhoneNumber(phoneNumber)
@@ -23,37 +23,37 @@ public class PhoneBook {
     }
 
     public int getNumberOfRecords() {
-        return contactList.size();
+        return personList.size();
     }
 
     public void printListOfRecords() {
-        for (int i = 0; i < contactList.size(); i++) {
+        for (int i = 0; i < personList.size(); i++) {
             System.out.printf("%d. %s %s, %s\n",
                     i + 1,
-                    contactList.get(i).getName(),
-                    contactList.get(i).getSurname(),
-                    contactList.get(i).getPhoneNumber()
+                    personList.get(i).getName(),
+                    personList.get(i).getSurname(),
+                    personList.get(i).getPhoneNumber()
             );
         }
     }
 
     public void editRecord(int record, String fieldToEdit, String newValue) {
-        if (record > contactList.size()) {
+        if (record > personList.size()) {
             System.out.println("There is no record with that id");
         } else {
             switch (fieldToEdit) {
                 case "name":
-                    contactList.get(record - 1).setName(newValue);
+                    personList.get(record - 1).setName(newValue);
                     break;
                 case "surname":
-                    contactList.get(record - 1).setSurname(newValue);
+                    personList.get(record - 1).setSurname(newValue);
                     break;
                 case "number":
                     if (!isPhoneNumberValid(newValue)) {
                         System.out.println("Wrong number format!");
                         newValue = "[no number]";
                     }
-                        contactList.get(record - 1).setPhoneNumber(newValue);
+                        personList.get(record - 1).setPhoneNumber(newValue);
                     break;
             }
         }
@@ -67,6 +67,6 @@ public class PhoneBook {
     }
 
     public void removeRecord(int recordToRemove) {
-        contactList.remove(recordToRemove);
+        personList.remove(recordToRemove);
     }
 }

@@ -1,25 +1,12 @@
 package contacts;
 
-public class Contact {
-    private String name;
-    private String surname;
-    private String phoneNumber;
+public abstract class Contact {
+    protected String name;
+    protected String phoneNumber;
 
-    private Contact(String name, String surname, String phoneNumber) {
+
+    public Contact(String name, String phoneNumber) {
         this.name = name;
-        this.surname = surname;
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -27,37 +14,15 @@ public class Contact {
         return name;
     }
 
-    public String getSurname() {
-        return surname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    static class ContactCreator {
-        private String name;
-        private String surname;
-        private String phoneNumber;
-
-        ContactCreator setName(String name) {
-            this.name = name;
-            return this;
-        }
-
-        ContactCreator setSurname(String surname) {
-            this.surname = surname;
-            return this;
-        }
-
-        ContactCreator setPhoneNumber(String phoneNumber) {
-            this.phoneNumber = phoneNumber;
-            return this;
-        }
-
-        Contact createNewContact() {
-            return new Contact(name, surname, phoneNumber);
-        }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
-
 }
