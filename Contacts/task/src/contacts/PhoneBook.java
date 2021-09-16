@@ -129,4 +129,28 @@ public class PhoneBook {
                 break;
         }
     }
+
+
+    public void search(String search) {
+        int counter = 0;
+        StringBuilder result = new StringBuilder();
+        int j = 1;
+
+        String regex = ".*" + search + ".*";
+        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+
+        for (Contact contact : contactList) {
+            if (contact.search(pattern)) {
+                counter++;
+                result.append(j + ". " + contact.getShortInfo() + "\n");
+                j++;
+            }
+        }
+        System.out.println("Find " + counter + " results:");
+        System.out.println(result);
+    }
+
+    public void deleteRecord(int recordIndex) {
+        contactList.remove(recordIndex);
+    }
 }

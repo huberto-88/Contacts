@@ -1,5 +1,8 @@
 package contacts;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Organization extends Contact {
     private String address;
 
@@ -23,6 +26,17 @@ public class Organization extends Contact {
                 "Number: " + phoneNumber + "\n" +
                 "Time created: " + timeCreated + "\n" +
                 "Time last edit: " + timeLastEdit + "\n";
+    }
+
+    @Override
+    public String getShortInfo() {
+        return name;
+    }
+
+    @Override
+    public boolean search(Pattern pattern) {
+        Matcher matcherAddress = pattern.matcher(address);
+        return super.search(pattern) || matcherAddress.matches();
     }
 
     static class ContactCreator {

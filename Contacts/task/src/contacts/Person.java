@@ -1,6 +1,8 @@
 package contacts;
 
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Person extends Contact {
     private String surname;
@@ -48,6 +50,17 @@ public class Person extends Contact {
                 "Number: " + phoneNumber + "\n" +
                 "Time created: " + timeCreated + "\n" +
                 "Time last edit: " + timeLastEdit + "\n";
+    }
+
+    @Override
+    public String getShortInfo() {
+        return name + " " + surname;
+    }
+
+    @Override
+    public boolean search(Pattern pattern) {
+        Matcher matcherSurname = pattern.matcher(surname);
+        return super.search(pattern) || matcherSurname.matches();
     }
 
     static class ContactCreator {
